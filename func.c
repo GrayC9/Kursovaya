@@ -1,20 +1,21 @@
+#include "const.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
 #define k 3
  
-void arr_create_t(float* arr, float dt, int n)
+void arr_create_t(float* arr, float tn, float tk, int n)
 {
-    dt = 1.0/(n - 1);
+    float dt = 1.0/(n - 1);
     for(int i = 0; i < n; i++) // массив времени t
     {
         arr[i] = i*dt;
     }
 }
  
-void arr_create_Uvx(float* arr ,int* Ui, float* t, int n, int kd)
+void arr_create_Uvx(float* arr ,int* Ui, float* t, int n, int kd, float tn)
 {
-    for(int i = 15; i < n; i++)
+    for(int i = 0; i < n; i++)
     {
         if (t[i] <= t1)
         {
@@ -22,11 +23,12 @@ void arr_create_Uvx(float* arr ,int* Ui, float* t, int n, int kd)
         }
         else if(t[i] <= t2 && t[i] >= t1)
         {
-            arr[i] = a * (1 - exp(-b * (t1 - tn))) * exp(-c * (t[i] - t2));
+            arr[i] = a * (1 - exp(-b * (t1 - tn)));
         }
-        else
+        else if (t[i] > t2)
         {
-            arr[i] = 0;
+            arr[i] = (a * (1 - exp(-b * (t1 - tn)))) * exp(-c * (t[i] - t2));
+
         }
     }
 }
@@ -72,7 +74,7 @@ void output_in_file(float* t, float* Uvx, float* Uvix, int n)
  
 void preview(void)
 {
-    printf("Курсовая работа по информатике\nТема: Анализ сигнала на выходе электрической  цепи.\nСтудента гр. ИКПИ-12 Соколова Никиты.\n\n");
+    printf("Курсовая работа по программированию\nТема: Анализ сигнала на выходе электрической  цепи.\nСтудента гр. ИКПИ-25 Манакова Данила.\n\n");
 }
  
 void preview_menu(void)
@@ -87,7 +89,7 @@ int numders_of_points(int* n)
     return *n;
 }
  
-float parameter(float* t, float* Uvx, int n, char* name_of_arr)
+void parameter(float* t, float* Uvx, int n, char* name_of_arr)
 {
     float min = Uvx[0];
     int min_index = 0;
@@ -111,7 +113,7 @@ float parameter(float* t, float* Uvx, int n, char* name_of_arr)
         fclose(f);
         printf("Запись прошла успешно!\n");
     }
-    return 0;
+    
 }
  
 void clear_file(void)

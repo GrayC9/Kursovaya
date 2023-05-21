@@ -1,6 +1,6 @@
 #include "func.c"
 void arr_create_t(float* arr, float tn, float tk, int n);
-void arr_create_Uvx(float* arr ,int* Ui, float* t, int n, int kd);
+void arr_create_Uvx(float* arr ,int* Ui, float* t, int n, int kd, float tn);
 void arr_create_Uvix(float* arr, float* Uvx, int n);
 void arr_create_Uvx2(float* arr ,int* Ui, float* t, int n, int kd);
 void output_in_terminal(float* t, float* Uvx, float* Uvix, int n);

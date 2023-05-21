@@ -1,14 +1,11 @@
+#include "const.h"
 #include "head.h"
-#define N 1000
-#define a 2
-#define b 4
-#define c -1
-#define t1 30
-#define t2 60
-#define tn 15
-#define tk 100
+#include "math.h"
+#include "stdlib.h"
 int main() {
-    float tn = 0, tk = 1;
+    float tn = 15;
+    float tk = 100;
+
     float dt = (tk - tn) / (N - 1);
     int n = 0, input = 0, cycle = 1;
     int Ui[4] = {5, 80, 10, 5};
@@ -27,8 +24,8 @@ int main() {
                 system("open graph.numbers");
                 break;
             case 1:
-                arr_create_t(t, dt, n);
-                arr_create_Uvx(Uvx, Ui, t, n, k);
+                arr_create_t(t, tn, tk, n);
+                arr_create_Uvx(Uvx, Ui, t, n, k, tn);
                 arr_create_Uvix(Uvix, Uvx, n);
                 printf("Расчёт произведён\n");
                 break;
